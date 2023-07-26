@@ -77,8 +77,8 @@ void execute_command(char *args[], char *err_msg)
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
-        {
-                if(execve(args[0], args, environ) == -1)
+	{
+		if (execve(args[0], args, environ) == -1)
 		{
 			perror(err_msg);
 			exit(EXIT_FAILURE);
@@ -132,7 +132,7 @@ void run_non_interactive_mode(int argc, char **argv)
 	while ((read_len = getline(&line, &len, stdin)) != 1)
 	{
 		if (line[read_len - 1] == '\n')
-			line[read_len -1] = '\0';
+			line[read_len - 1] = '\0';
 		parse_input(line, args, &argc);
 		if (_strcmp(args[0], "env") == 0)
 			print_env_var();
