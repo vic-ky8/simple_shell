@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #include <sys/wait.h>
 #include <string.h>
 #include <errno.h>
@@ -34,9 +33,9 @@ void handle_arguments(char *args[], char *err_msg)
 		perror(err_msg);
 		exit(EXIT_FAILURE);
 	}
-	else if ( pid == 0)
+	else if (pid == 0)
 	{
-		if(execve(args[0],args, environ) == -1)
+		if (execve(args[0], args, environ) == -1)
 		{
 			perror(err_msg);
 			exit(EXIT_FAILURE);
@@ -59,58 +58,40 @@ void handle_arguments(char *args[], char *err_msg)
  */
 void execute_command(char *args[], char *err_msg)
 {
-        pid_t pid;
-        int status;
+	pid_t pid;
+	int status;
 
-        if (_strcmp(args[0], "ls") == 0)
+	if (_strcmp(args[0], "ls") == 0)
+	{
+		args[0] = "/bin/ls";
+	}
+	if (access(args[0], F_OK) == -1)
+	{
+		perror(err_msg);
+		return;
+	}
+	pid = fork();
+	if (pid < 0)
+	{
+		perror(err_msg);
+		exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
         {
-                args[0] = "/bin/ls";
-        }
-        if (access(args[0], F_OK) == -1)
-        {
-                perror(err_msg);
-                return;
-        }
-        pid = fork();
-        if (pid < 0)
-        {
-                perror(err_msg);
-                exit(EXIT_FAILURE);
-        }
-	else if ( pid == 0)
-        {
-                if(execve(args[0]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					,args, environ) == -1)
-                {
-                        perror(err_msg);
-                        exit(EXIT_FAILURE);
-                }
-        }
-        else
-        {
-                if (waitpid(pid, &status, 0) == -1)
-                {
-                        perror(err_msg);
-                        exit(EXIT_FAILURE);
-                }
-        }
+                if(execve(args[0], args, environ) == -1)
+		{
+			perror(err_msg);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		if (waitpid(pid, &status, 0) == -1)
+		{
+			perror(err_msg);
+			exit(EXIT_FAILURE);
+		}
+	}
 }
 /**
  * parse_input - tokenize inputs
