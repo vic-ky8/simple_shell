@@ -138,8 +138,7 @@ void run_non_interactive_mode(int argc, char **argv)
 			print_env_var();
 		if (_strcmp(args[0], "exit") == 0 && argc == 2)
 			exit_command(args);
-		if (argc == 1 &&
-				(_strcmp(args[0], "env") != 0))
+		if (argc == 1 && (_strcmp(args[0], "env") != 0))
 			execute_command(args, err_msg);
 		if (argc > 1)
 			handle_arguments(args, err_msg);
@@ -170,7 +169,7 @@ void run_interactive_mode(int argc, char **argv)
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
-		if (line[read_len - 1]== '\n')
+		if (line[read_len - 1] == '\n')
 			line[read_len - 1] = '\0';
 		argc = 0;
 		parse_input(line, args, &argc);
@@ -181,6 +180,6 @@ void run_interactive_mode(int argc, char **argv)
 		if (argc == 1 && (_strcmp(args[0], "env") != 0))
 			execute_command(args, err_msg);
 		if (argc > 1)
-			handle_ arguments(args, err_msg);
+			handle_arguments(args, err_msg);
 	}
 }
