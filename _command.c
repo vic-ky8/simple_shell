@@ -10,5 +10,5 @@ void _printf(const char *str)
 	{
 	      _putchar(*str);
 	      str++;
-        }
+	}
 }
