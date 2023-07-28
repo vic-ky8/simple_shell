@@ -1,5 +1,12 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <limits.h>
+#include <time.h>
+
+char *append_command(char *dir_path, char *command)
+int exist(char *pathname)
 void _putchar(char c);
 int _strcmp(char *g1, char *g2);
 void free_args(char *args[]);
