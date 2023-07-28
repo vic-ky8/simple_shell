@@ -1,10 +1,9 @@
 #include "main.h"
 /**
  * int_converter - A function that convert strings.
- * @str : string to the argument
- * Return : converted int
+ * @str: string to the argument
+ * Return: converted int
  */
-
 int int_converter(const char *str)
 {
 	int r = 0;

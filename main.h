@@ -10,11 +10,11 @@ int exist(char *pathname)
 void _putchar(char c);
 int _strcmp(char *g1, char *g2);
 void free_args(char *args[]);
-char _strcpy(char *destination, const char *strings);
+char *_strcpy(char *destination, const char *strings);
 void _printf(const char *str);
 extern char **environ;
 int _strlen(char *s);
-char _strtok(char *string, const char *delim);
+char *_strtok(char *string, const char *delim);
 void print_env_var(void);
 void parse_input(char *line, char **args, int *argc);
 void execute_command(char **args, char *err_msg);
